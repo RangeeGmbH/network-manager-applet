@@ -12,6 +12,7 @@
 #include "applet.h"
 #include "applet-device-ethernet.h"
 #include "ethernet-dialog.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #define DEFAULT_ETHERNET_NAME _("Auto Ethernet")
 
@@ -313,7 +314,7 @@ pppoe_get_secrets (SecretsRequest *req, GError **error)
 
 	builder = gtk_builder_new ();
 
-	if (!gtk_builder_add_from_resource (builder, "/org/freedesktop/network-manager-applet/connection-editor/ce-page-dsl.ui", &tmp_error)) {
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (builder, "/org/freedesktop/network-manager-applet/connection-editor/ce-page-dsl.ui", &tmp_error)) {
 		g_set_error (error,
 		             NM_SECRET_AGENT_ERROR,
 		             NM_SECRET_AGENT_ERROR_FAILED,

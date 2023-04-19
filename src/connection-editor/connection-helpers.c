@@ -26,6 +26,7 @@
 #include "page-wireguard.h"
 #include "vpn-helpers.h"
 #include "nm-utils/nm-vpn-editor-plugin-call.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #define COL_MARKUP     0
 #define COL_SENSITIVE  1
@@ -608,7 +609,7 @@ new_connection_dialog_full (GtkWindow *parent_window,
 
 	/* load GUI */
 	gui = gtk_builder_new ();
-	if (!gtk_builder_add_from_resource (gui,
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (gui,
 	                                    "/org/gnome/nm_connection_editor/ce-new-connection.ui",
 	                                    &error)) {
 		g_warning ("Couldn't load builder resource: %s", error->message);

@@ -20,6 +20,7 @@
 #include <NetworkManager.h>
 
 #include "ppp-auth-methods-dialog.h"
+#include "nm-utils/nm-shared-utils.h"
 
 static void
 validate (GtkWidget *dialog)
@@ -72,7 +73,7 @@ ppp_auth_methods_dialog_new (gboolean refuse_eap,
 
 	builder = gtk_builder_new ();
 
-	if (!gtk_builder_add_from_resource (builder, "/org/gnome/nm_connection_editor/ce-ppp-auth-methods.ui", &error)) {
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (builder, "/org/gnome/nm_connection_editor/ce-ppp-auth-methods.ui", &error)) {
 		g_warning ("Couldn't load builder resource: %s", error->message);
 		g_error_free (error);
 		return NULL;

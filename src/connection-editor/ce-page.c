@@ -14,6 +14,7 @@
 #include <stdlib.h>
 
 #include "ce-page.h"
+#include "nm-utils/nm-shared-utils.h"
 
 G_DEFINE_ABSTRACT_TYPE (CEPage, ce_page, G_TYPE_OBJECT)
 
@@ -910,7 +911,7 @@ ce_page_new (GType page_type,
 	self->editor = editor;
 
 	if (ui_resource) {
-		if (!gtk_builder_add_from_resource (self->builder, ui_resource, &error)) {
+		if (!nm_utils_gtk_builder_add_from_file_or_resource (self->builder, ui_resource, &error)) {
 			g_warning ("Couldn't load builder resource: %s", error->message);
 			g_error_free (error);
 			g_object_unref (self);

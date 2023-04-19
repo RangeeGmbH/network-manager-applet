@@ -20,6 +20,7 @@
 #include "nm-connection-list.h"
 #include "ce-polkit.h"
 #include "connection-helpers.h"
+#include "nm-utils/nm-shared-utils.h"
 
 extern gboolean nm_ce_keep_above;
 
@@ -542,7 +543,7 @@ nm_connection_list_class_init (NMConnectionListClass *klass)
 		              G_TYPE_NONE, 1, G_TYPE_POINTER);
 
 	/* Initialize the widget template */
-        gtk_widget_class_set_template_from_resource (widget_class,
+        nm_utils_gtk_widget_class_set_template_from_file_or_resource (widget_class,
 	                                             "/org/gnome/nm_connection_editor/nm-connection-list.ui");
 
         gtk_widget_class_bind_template_child_private (widget_class, NMConnectionList, connection_list);

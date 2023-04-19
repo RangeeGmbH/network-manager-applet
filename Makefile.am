@@ -201,6 +201,7 @@ noinst_LTLIBRARIES += src/utils/libutils-libnm.la
 
 src_utils_libutils_libnm_la_CPPFLAGS = \
 	$(dflt_cppflags) \
+	-DUIDIR=\""$(uidir)"\" \
 	"-I$(srcdir)/shared" \
 	$(GTK3_CFLAGS) \
 	$(LIBNM_CFLAGS)
@@ -602,6 +603,8 @@ nm-connection-editor.appdata.xml: nm-connection-editor.appdata.xml.in
 
 convertdir=$(datadir)/GConf/gsettings
 convert_DATA=nm-applet.convert
+
+uidir = $(datadir)/nm-applet/ui
 
 EXTRA_DIST += \
 	$(convert_DATA) \

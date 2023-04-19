@@ -21,6 +21,7 @@
 #include "ip4-routes-dialog.h"
 #include "utils.h"
 #include "ce-utils.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #define COL_ADDRESS 0
 #define COL_PREFIX  1
@@ -610,7 +611,7 @@ ip4_routes_dialog_new (NMSettingIPConfig *s_ip4, gboolean automatic)
 
 	builder = gtk_builder_new ();
 
-	if (!gtk_builder_add_from_resource (builder, "/org/gnome/nm_connection_editor/ce-ip4-routes.ui", &error)) {
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (builder, "/org/gnome/nm_connection_editor/ce-ip4-routes.ui", &error)) {
 		g_warning ("Couldn't load builder resource: %s", error->message);
 		g_error_free (error);
 		return NULL;

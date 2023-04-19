@@ -31,6 +31,7 @@
 #include "nma-wifi-dialog.h"
 #include "applet-vpn-request.h"
 #include "utils.h"
+#include "nm-utils/nm-shared-utils.h"
 
 #if WITH_WWAN
 # include "applet-device-broadband.h"
@@ -3361,7 +3362,7 @@ applet_startup (GApplication *app, gpointer user_data)
 
 	applet->info_dialog_ui = gtk_builder_new ();
 
-	if (!gtk_builder_add_from_resource (applet->info_dialog_ui, "/org/freedesktop/network-manager-applet/info.ui", &error)) {
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (applet->info_dialog_ui, "/org/freedesktop/network-manager-applet/info.ui", &error)) {
 		g_warning ("Could not load info dialog UI file: %s", error->message);
 		g_application_quit (app);
 		return;

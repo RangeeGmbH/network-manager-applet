@@ -11,6 +11,7 @@
 #include "page-wireguard.h"
 #include "nm-connection-editor.h"
 #include "nma-ui-utils.h"
+#include "nm-utils/nm-shared-utils.h"
 
 G_DEFINE_TYPE (CEPageWireGuard, ce_page_wireguard, CE_TYPE_PAGE)
 
@@ -184,7 +185,7 @@ peer_dialog_create (GtkWidget *toplevel, NMWireGuardPeer *peer)
 
 	builder = gtk_builder_new ();
 
-	if (!gtk_builder_add_from_resource (builder,
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (builder,
 	                                    "/org/gnome/nm_connection_editor/ce-page-wireguard.ui",
 	                                    &error)) {
 		g_warning ("Couldn't load builder resource: %s", error->message);

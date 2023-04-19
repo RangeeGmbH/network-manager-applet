@@ -14,6 +14,7 @@
 #include "ethernet-dialog.h"
 #include "applet-dialogs.h"
 #include "eap-method.h"
+#include "nm-utils/nm-shared-utils.h"
 
 static void
 stuff_changed_cb (NMAWs *ws, gpointer user_data)
@@ -68,7 +69,7 @@ nma_ethernet_dialog_new (NMConnection *connection)
 
 	builder = gtk_builder_new ();
 
-	if (!gtk_builder_add_from_resource (builder, "/org/freedesktop/network-manager-applet/8021x.ui", &error)) {
+	if (!nm_utils_gtk_builder_add_from_file_or_resource (builder, "/org/freedesktop/network-manager-applet/8021x.ui", &error)) {
 		g_warning ("Couldn't load builder resource: %s", error->message);
 		g_error_free (error);
 		applet_missing_ui_warning_dialog_show ();
